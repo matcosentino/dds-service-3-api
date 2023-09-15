@@ -1,5 +1,6 @@
 package domain.entities;
 
+import io.javalin.openapi.OpenApiExample;
 import java.util.List;
 
 public class Entity {
@@ -17,18 +18,11 @@ public class Entity {
     this.membersAffected = membersAffected;
   }
 
-  public Double calculateImpactLevel(Coefficient coefficient) {
-    return (this.incidentsDurationTotal() + (this.incidentsNotResolved * coefficient.getValue())) * this.membersAffected;
-  }
-
-  private Double incidentsDurationTotal() {
-    return incidentsDuration.stream().mapToDouble(Double::doubleValue).sum();
-  }
-
   public String getName() {
     return name;
   }
 
+  @OpenApiExample("[0.1]")
   public List<Double> getIncidentsDuration() {
     return incidentsDuration;
   }
@@ -39,5 +33,13 @@ public class Entity {
 
   public Integer getMembersAffected() {
     return membersAffected;
+  }
+
+  public Double calculateImpactLevel(Double coefficient) {
+    return (this.incidentsDurationTotal() + (this.incidentsNotResolved * coefficient)) * this.membersAffected;
+  }
+
+  private Double incidentsDurationTotal() {
+    return incidentsDuration.stream().mapToDouble(Double::doubleValue).sum();
   }
 }

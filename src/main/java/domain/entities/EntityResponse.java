@@ -1,5 +1,7 @@
 package domain.entities;
 
+import io.javalin.openapi.OpenApiExample;
+
 public class EntityResponse {
   private String name;
   private Double impactLevel;
@@ -15,6 +17,7 @@ public class EntityResponse {
     return name;
   }
 
+  @OpenApiExample("0.1")
   public Double getImpactLevel() {
     return impactLevel;
   }
