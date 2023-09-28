@@ -12,4 +12,4 @@ Once the service is running, visit http://localhost:8080/swagger to understand t
 
 ### Technology Stack
 - Programming language: [Java](https://docs.oracle.com/en/java/javase/17/ "Java 17")
-- Framework: [Javalin](https://javalin.io/documentation "Javalin")
+- Framework: [Javalin](https://javalin.io/documentation "Javalin 5")
