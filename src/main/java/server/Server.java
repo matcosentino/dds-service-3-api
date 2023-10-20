@@ -1,16 +1,34 @@
-import domain.controllers.RankingEntityController;
+package server;
+
 import io.javalin.Javalin;
+import io.javalin.config.JavalinConfig;
 import io.javalin.openapi.OpenApiContact;
 import io.javalin.openapi.OpenApiInfo;
 import io.javalin.openapi.plugin.OpenApiConfiguration;
 import io.javalin.openapi.plugin.OpenApiPlugin;
 import io.javalin.openapi.plugin.swagger.SwaggerConfiguration;
 import io.javalin.openapi.plugin.swagger.SwaggerPlugin;
+import java.util.function.Consumer;
 
+public class Server {
+  private static Javalin app = null;
 
-public class Main {
-  public static void main(String[] args) {
-    var app = Javalin.create(config -> {
+  public static Javalin app() {
+    if (app == null)
+      throw new RuntimeException("App not initialized");
+    return app;
+  }
+
+  public static void init() {
+    if (app == null) {
+      Integer port = Integer.parseInt(System.getProperty("port", "8080"));
+      app = Javalin.create(config()).start(port);
+      Router.init();
+    }
+  }
+
+  private static Consumer<JavalinConfig> config() {
+    return config -> {
       OpenApiContact openApiContact = new OpenApiContact();
       openApiContact.setName("API Support");
       openApiContact.setEmail("2023-tpa-mi-no-grupo-15@frba.utn.edu.ar");
@@ -29,8 +47,6 @@ public class Main {
 
       SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
       config.plugins.register(new SwaggerPlugin(swaggerConfiguration));
-    }).start(8080);
-
-    app.post("/calculateImpactRanking", new RankingEntityController());
+    };
   }
 }

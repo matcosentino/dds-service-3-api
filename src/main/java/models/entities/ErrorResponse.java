@@ -1,4 +1,4 @@
-package domain.entities;
+package models.entities;
 
 public class ErrorResponse {
   private String message;

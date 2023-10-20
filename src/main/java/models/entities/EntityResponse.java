@@ -1,4 +1,4 @@
-package domain.entities;
+package models.entities;
 
 import io.javalin.openapi.OpenApiExample;
 

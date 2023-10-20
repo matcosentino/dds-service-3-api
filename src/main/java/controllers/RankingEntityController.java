@@ -1,10 +1,10 @@
-package domain.controllers;
+package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.entities.Entity;
-import domain.entities.EntityResponse;
-import domain.entities.ErrorResponse;
-import domain.entities.InputDataClass;
+import models.entities.Entity;
+import models.entities.EntityResponse;
+import models.entities.ErrorResponse;
+import models.entities.InputDataClass;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import io.javalin.openapi.HttpMethod;
